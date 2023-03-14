@@ -3,16 +3,14 @@ name: Update
 
 on:
   workflow_dispatch:
-
-  # uncomment to use update on cron
-  # schedule:
-  #   # * is a special character in YAML so you have to quote this string
-  #   - cron: "5 */8 * * *"
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: "5 */8 * * *"
 
 env:
   # Where do we get our data, and where do we put it?
-  # ENDPOINT: https://www.universalhub.com/toast.xml
-  # TARGET: toast.xml
+  ENDPOINT: https://www.fdic.gov/resources/resolutions/bank-failures/failed-bank-list/banklist.csv
+  TARGET: failures.csv
 
 jobs:
   update:
