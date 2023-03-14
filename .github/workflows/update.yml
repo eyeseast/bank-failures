@@ -1,0 +1,36 @@
+# run the cron
+name: Update
+
+on:
+  workflow_dispatch:
+
+  # uncomment to use update on cron
+  # schedule:
+  #   # * is a special character in YAML so you have to quote this string
+  #   - cron: "5 */8 * * *"
+
+env:
+  # Where do we get our data, and where do we put it?
+  # ENDPOINT: https://www.universalhub.com/toast.xml
+  # TARGET: toast.xml
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Download
+        run: |
+          curl $ENDPOINT > $TARGET
+
+      - name: commit
+        run: |
+          timestamp=$(date -u)
+          git config user.name "Automated"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -m "Updated: ${timestamp}" || exit 0
+          git push
