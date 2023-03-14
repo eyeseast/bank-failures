@@ -1,10 +1,10 @@
-# Git scraper template
+# Bank failures
 
-Use this for simple git scrapers that download and track files over time.
+Track updates to FDIC's list of bank failures here: https://www.fdic.gov/resources/resolutions/bank-failures/failed-bank-list/
 
-In `.github/workflows/update.yml`, update two environment variables:
+See `.github/workflows/update.yml`:
 
-- `env.ENDPOINT`: Fetch this endpoint to download data.
-- `env.TARGET`: Save data here.
+- `env.ENDPOINT`: https://www.fdic.gov/resources/resolutions/bank-failures/failed-bank-list/banklist.csv
+- `env.TARGET`: `failures.csv`
 
-Update this README as needed to describe what's happening.
+Hopefully this doesn't change very often.
